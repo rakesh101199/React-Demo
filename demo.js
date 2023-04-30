@@ -1,18 +1,37 @@
-var newText=document.createElement('div');
-var text=document.createTextNode('Hello');
-newText.appendChild(text);
-var items=document.querySelector('header .container');
-var item=document.querySelector('header h1');
-console.log(items);
-console.log(item);
-items.insertBefore(newText,item);
+var items=document.getElementsByTagName('li');
 
-var newText1=document.createElement('div');
-var text1=document.createTextNode('Hello');
-newText1.appendChild(text1);
-newText1.className='list-group-item';
-var items1=document.querySelector('#items');
-var item1=document.querySelector(".list-group-item");
-console.log(items1);
-console.log(item1);
-items1.insertBefore(newText1,item1);
+Array.from(items).forEach(element => {
+
+var deletebtn = document.createElement('button');
+var dtext =document.createTextNode('x');
+deletebtn.style.backgroundColor='red';
+deletebtn.style.marginLeft='300px';
+deletebtn.className='del';
+deletebtn.appendChild(dtext);
+
+element.appendChild(deletebtn);
+
+var editbtn = document.createElement('button');
+var etext =document.createTextNode('Edit');
+editbtn.style.backgroundColor='yellow';
+editbtn.style.marginLeft='30px';
+editbtn.appendChild(etext);
+
+element.appendChild(editbtn);
+});
+
+var itemList=document.getElementById('items');
+itemList.addEventListener('click',delFunction);
+console.log(itemList);
+function delFunction(e){
+    console.log(e.target);
+    if(e.target.className == 'del'){
+        if(confirm('Are you sure')){
+            console.log('removed');
+            var parent=e.target.parentElement;
+            itemList.removeChild(parent);
+
+        }
+    }
+}
+
