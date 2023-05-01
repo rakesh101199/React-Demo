@@ -1,7 +1,7 @@
 var form = document.getElementById('my-form');
 
 form.addEventListener('submit',onSubmit);
-
+// storing all the users data
 const myObj ={};
 function onSubmit(e){
     var email = document.getElementById('email');
