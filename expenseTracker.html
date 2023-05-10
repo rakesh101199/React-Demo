@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <form id="exp">   
+            <label for="chooseAmt">Choose Expense Amount : </label>
+            <input type="text" class="amt" id="amt" required>
+            <label for="chooseDes">Choose Description : </label>
+            <input type="text" class='des' id='des' required>
+            <label for="Category">Choose a Category : </label>
+            <select id="choose" class="choose">
+                <option value="Fuel">Fuel</option>
+                <option value="Movie">Movie</option>
+                <option value="Dinner">Dinner</option>
+                <option value="Trip">Trip</option>
+            </select>
+            <input type="submit" id="btn" class="btn" value="Add Expense">
+            <ul id="items" class="items">
+            </ul>
+        </form>
+    </div>
+    <script src="expenseTracker.js"></script>
+</body>
+</html>
