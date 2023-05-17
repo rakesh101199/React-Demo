@@ -1,6 +1,6 @@
 var form = document.getElementById('my-form');
 var users = document.getElementById('users');
-//users.addEventListener('click',delFunction);
+users.addEventListener('click',delFunction);
 
 form.addEventListener('submit',onSubmit);
 
@@ -9,20 +9,37 @@ function delFunction(e){
     //deleting the user
     if(e.target.id === 'dele'){
         var par=e.target.parentElement;
+        var txt = par.firstChild.nodeValue.split(' ');
         users.removeChild(par);
+        var id;
+        axios.get('https://crudcrud.com/api/268edf84a86b4396985b050f2c31e65e/bookingApp')
+        .then(response => {
+            for( var i =0;i<response.data.length;i++){
+                if(response.data[i].name === txt[0] & response.data[i].email === txt[1]){
+                    id = response.data[i]._id;
+                    console.log('data match found');
+                    break;
+                }
+            }
+            axios.delete(`https://crudcrud.com/api/268edf84a86b4396985b050f2c31e65e/bookingApp/${id}`)
+            .then(res => console.log('data deleted'))
+            .catch(err => console.log(err));
+            
+            })
+        .catch(err => console.log(err));   
     }
     //editing the user.
-    else if(e.target.id === 'edit'){
-        var paren = e.target.parentElement;
-        var txt = paren.firstChild.nodeValue.split(' ');
-        console.log('inthe edit function')
-        console.log(txt);
-        var email = document.getElementById('email');
-        var name = document.getElementById('name');
-        name.value = txt[0];
-        email.value = txt[1];
-        users.removeChild(paren);
-    }
+    // else if(e.target.id === 'edit'){
+    //     var paren = e.target.parentElement;
+    //     var txt = paren.firstChild.nodeValue.split(' ');
+    //     console.log('inthe edit function')
+    //     console.log(txt);
+    //     var email = document.getElementById('email');
+    //     var name = document.getElementById('name');
+    //     name.value = txt[0];
+    //     email.value = txt[1];
+    //     users.removeChild(paren);
+    // }
 
 }
 
