@@ -27,19 +27,7 @@ function delFunction(e){
 }
 
 
-// storing all the users data
-
-function onSubmit(e){
-    const myObj ={};
-    var email = document.getElementById('email');
-    var name = document.getElementById('name');
-    e.preventDefault();
-
-    myObj[name.value]=email.value;
-
-    axios.post("https://crudcrud.com/api/271e1cd6962c4a5ca8e7ee5bd68cade6/bookingApp",myObj)
-    .then( response =>{
-     // if the post is sucessfull then adding delete and edit buttons.
+function addingUserToScreen(data){
     var userBtn = document.createElement('li');
     var deleteBtn = document.createElement('button');
     deleteBtn.appendChild(document.createTextNode('delete'));
@@ -53,16 +41,43 @@ function onSubmit(e){
     editBtn.style.marginLeft='10px';
     editBtn.id='edit';
 
-    var text = document.createTextNode(name.value +' '+ email.value);
+    var text = document.createTextNode(data['name'] +' '+ data['email']);
     userBtn.appendChild(text);
     userBtn.appendChild(deleteBtn);
     userBtn.appendChild(editBtn);
     users.appendChild(userBtn);
 
+}
 
+
+
+
+// storing all the users data
+
+function onSubmit(e){
+    const myObj ={};
+    var email = document.getElementById('email');
+    var name = document.getElementById('name');
+    e.preventDefault();
+
+    myObj["name"]=name.value;
+    myObj["email"]=email.value;
+
+    axios.post("https://crudcrud.com/api/268edf84a86b4396985b050f2c31e65e/bookingApp",myObj)
+    .then( response =>{
+    addingUserToScreen(response.data);
     name.value='';
     email.value='';
-
-
     }).catch(err=>console.log(err));
 }
+
+
+window.addEventListener('DOMContentLoaded',() =>{
+    axios.get('https://crudcrud.com/api/268edf84a86b4396985b050f2c31e65e/bookingApp')
+    .then(response => {
+        response.data.forEach((data) =>{addingUserToScreen(data)})         
+        })
+    .catch(err => console.log(err));
+        
+    });
+
