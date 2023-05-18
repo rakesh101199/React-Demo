@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body > 
+    <div>
+        <form id ='form'>
+            <label>  Choose Price </label>
+            <input type="text" id="price">
+            <label>  Choose Item </label>
+            <input type="text" id="item">
+            <label>  Choose Table </label>
+            <select id="table">
+                <option value="table1">table1</option>
+                <option value="table2">table2</option>
+                <option value="table3">table3</option>
+            </select>
+            <input type="submit" id="submit" value="add Bill">        
+        <h1>Orders</h1>
+        <h3>Table1</h3>
+        <ul id="table1"></ul>
+        <h3>Table2</h3>
+        <ul id="table2"></ul>
+        <h3>Table3</h3>
+        <ul id="table3"></ul>
+        </form>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+    <script src="restaurant.js"></script>
+</body>
+</html>
